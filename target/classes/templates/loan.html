@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Loan Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div id="loan-table">
+		<h1>Loan catalog</h1>
+		<table border="1">
+			<tr>
+				<td>ID</td>
+				<td>Book title</td>
+				<td>Member</td>
+				<td>Loan date</td>
+				<td>Loan expiration</td>
+				<td>Loan returned date</td>
+			</tr>
+			<tr th:each="loan : ${loanList}">
+				<td th:text="${loan.id_loan}"></td>
+				<td th:text="${loan.id_book}"></td>
+				<td th:text="${loan.id_member}"></td>
+				<td th:text="${loan.start_date}"></td>
+				<td th:text="${loan.finish_date}"></td>
+				<td th:text="${loan.return_date}"></td>
+				<td>
+					<td>
+					<form action="#" th:action="'/loan/return/'+${loan.id_loan}">
+						<input type="submit" value="Returned" />
+					</form>
+				</td>
+				</td>
+				<td><button th:href="'/loan/edit/'+${loan.id_loan}">Edit</button></td>
+				<td><button th:href="'/loan/remove/'+${loan.id_loan}">Remove</button></td>
+			</tr>
+		</table>
+		<br />
+	</div>
+</body>
+</html>

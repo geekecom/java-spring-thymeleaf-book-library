@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Loan Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div id="member-select-table">
+		<h1>Member catalog</h1>
+		<table border="1">
+			<tr>
+				<td>ID</td>
+				<td>Name</td>
+				<td>Surname</td>
+			</tr>
+			<tr th:each="member : ${memberList}">
+				<td th:text="${member.id_member}"></td>
+				<td th:text="${member.name}"></td>
+				<td th:text="${member.surname}"></td>
+				<td>
+					<form th:action="'/loan/add/finish/'+${member.id_member}">
+						<input type="submit" value="Select" />
+					</form>
+				</td>
+			</tr>
+		</table>
+		<br />
+	</div>
+</body>
+</html>

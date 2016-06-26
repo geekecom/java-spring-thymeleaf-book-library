@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Member</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div id="member-table">
+		<h1>Member catalog</h1>
+		<table border="1">
+			<tr>
+				<td>ID</td>
+				<td>Name</td>
+				<td>Surname</td>
+				<td>Contact info</td>
+			</tr>
+			<tr th:each="member : ${memberList}">
+				<td th:text="${member.id_member}"></td>
+				<td th:text="${member.name}"></td>
+				<td th:text="${member.surname}"></td>
+				<td><button th:href="'/member/detail/'+${member.id_member}">+info</button></td>
+				<td><button th:href="'/member/edit/'+${member.id_member}">Edit</button></td>
+				<td><button th:href="'/member/remove/'+${member.id_member}">Remove</button></td>
+			</tr>
+		</table>
+		<br />
+	</div>
+	<div id="bood-add">
+		<h2>New Member</h2>
+		<form action="#" th:action="@{/member/add}" th:object="${member}"
+			method="post">
+			<table>
+				<tr>
+					<td>Name</td>
+					<td><input type="text" th:field="*{name}" /></td>
+				</tr>
+				<tr>
+					<td>Surname</td>
+					<td><input type="text" th:field="*{surname}" /></td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td><input type="text" th:field="*{address}" /></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><input type="text" th:field="*{email}" /></td>
+				</tr>
+				<tr>
+					<td>Phone</td>
+					<td><input type="text" th:field="*{phone}" /></td>
+				</tr>
+			</table>
+			<input type="submit" value="Add" />
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Book Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div id="book-table">
+		<h1>Book catalog</h1>
+		<table border="1">
+			<tr>
+				<td>ID</td>
+				<td>Title</td>
+				<td>Athor</td>
+				<td>ISBN</td>
+			</tr>
+			<tr th:each="book : ${bookList}">
+				<td th:text="${book.id_book}"></td>
+				<td th:text="${book.title}"></td>
+				<td th:text="${book.author}"></td>
+				<td th:text="${book.isbn}"></td>
+				<td>
+					<form action="#" th:action="'/loan/return/'+${book.id_book}">
+						<input type="submit" value="Lend" />
+					</form>
+				</td>
+				<td>
+					<form th:action="'/book/edit/'+${book.id_book}">
+						<input type="submit" value="Edit" />
+					</form>
+				</td>
+				<td>
+					<form action="'/book/remove/'+${book.id_book}">
+						<input type="submit" value="Remove" />
+					</form>
+				</td>
+			</tr>
+		</table>
+		<br />
+	</div>
+	<div id="bood-add">
+		<h2>Add a Book</h2>
+		<form action="#" th:action="@{/book/add}" th:object="${book}"
+			method="post">
+			<table>
+				<tr>
+					<td>Title</td>
+					<td><input type="text" th:field="*{title}" /></td>
+				</tr>
+				<tr>
+					<td>Author</td>
+					<td><input type="text" th:field="*{author}" /></td>
+				</tr>
+				<tr>
+					<td>ISBN</td>
+					<td><input type="text" th:field="*{isbn}" /></td>
+				</tr>
+			</table>
+			<input type="submit" value="Add" />
+		</form>
+	</div>
+</body>
+</html>
